@@ -1,35 +1,29 @@
-import random
+import random  # Import the random module to generate random numbers
 
-a= random.sample(range(1, 101), 100)
-print(a)
+# Generate a list of 100 random numbers ranging from 0 to 1000
+a = [random.randint(0, 1000) for _ in range(100)]
+print("Original List:", a)  # Print the original unsorted list
 
-# sorting list using nested loops
-for i in range(0, len(a)):
+# Sorting the list using a nested loop
+for i in range(len(a)):
     for j in range(i + 1, len(a)):
-        if a[i] >= a[j]:
+        if a[i] > a[j]:  # Swap if the current element is greater than the next
             a[i], a[j] = a[j], a[i]
 
-# sorted list
-print("Sorted List", a)
+print("Sorted List:", a)  # Print the sorted list
 
-# Separate the even and odd numbers into two different lists
-even_numbers = [num for num in a if num % 2 == 0]  # List comprehension for even numbers
-odd_numbers = [num for num in a if num % 2 != 0]  # List comprehension for odd numbers
+# Separate even and odd numbers into two lists
+even_numbers = [num for num in a if num % 2 == 0]  # Extract even numbers
+odd_numbers = [num for num in a if num % 2 != 0]  # Extract odd numbers
 
-# Function to calculate the average of a list of numbers
+# Function to calculate the average of a list
 def calculate_average(numbers):
-    if len(numbers) == 0:  # Avoid division by zero if the list is empty
-        return 0
-    return sum(numbers) / len(numbers)  # Calculate sum and divide by the length of the list
+    return sum(numbers) / len(numbers) if numbers else 0  # Avoid division by zero
 
-# Calculate the average for even numbers
+# Calculate the average for even and odd numbers
 average_even = calculate_average(even_numbers)
-
-# Calculate the average for odd numbers
 average_odd = calculate_average(odd_numbers)
 
-# Print the average result for even numbers
+# Print the results
 print(f"Average of even numbers: {average_even}")
-
-# Print the average result for odd numbers
 print(f"Average of odd numbers: {average_odd}")
